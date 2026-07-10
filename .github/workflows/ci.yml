@@ -1,4 +1,4 @@
-name: Integración continua
+name: Integración Continua (CI)
 
 on:
   push:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   verificar:
-    name: Validar, probar y construir
+    name: Validar y Construir
     runs-on: ubuntu-latest
 
     steps:
@@ -25,16 +25,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
 
-      - name: Instalar dependencias de forma reproducible
-        run: npm ci
-
-      - name: Validar sintaxis
-        run: npm run check
-
-      - name: Ejecutar pruebas automatizadas
-        run: npm test
-
-      - name: Construir el artefacto web
-        run: npm run build
+      - name: Ejecutar validaciones y pruebas
+        run: npm run verify
